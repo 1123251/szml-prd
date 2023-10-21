@@ -1,0 +1,21 @@
+server:
+  port: 9100
+spring:
+  application:
+    name: szml-prd-common
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.220.129:8848
+        username: nacos
+        password: nacos
+      config:
+        server-addr: 192.168.220.129:8848
+        file-extension: yml
+        username: nacos
+        password: nacos
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+
