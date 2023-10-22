@@ -1,4 +1,4 @@
-package com.yt.config;
+package com.yt.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.yt.util.WebUtils;

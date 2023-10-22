@@ -17,8 +17,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
             "            LEFT JOIN `sys_role_menu` rm ON ur.`role_id` = rm.`role_id`" +
             "            LEFT JOIN `sys_menu` m ON m.`id` = rm.`menu_id`" +
             "        WHERE" +
-            "            user_id = #{userid}" +
-            "            AND r.`status` = 0" +
-            "            AND m.`status` = 0")
+            "            user_id = #{userid}"
+            )
     List<String> selectPermsByUserId(Long id);
 }

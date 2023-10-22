@@ -1,4 +1,4 @@
-package com.yt.config;
+package com.yt.filter;
 
 import com.yt.entity.LoginUser;
 import com.yt.util.JwtUtil;
