@@ -17,6 +17,7 @@
     <modules>
         <module>prd-user</module>
         <module>common</module>
+        <module>prd-product</module>
     </modules>
     <!-- 依赖版本配置 -->
     <properties>

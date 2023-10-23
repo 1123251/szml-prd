@@ -1,0 +1,6 @@
+# nacos动态配置dataId的后缀
+spring:
+  profiles:
+    active: dev
+config:
+  doller

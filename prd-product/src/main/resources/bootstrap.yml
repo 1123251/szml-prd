@@ -1,8 +1,8 @@
 server:
-  port: 9100
+  port: 9110
 spring:
   application:
-    name: szml-prd-common
+    name: szml-prd-product
   cloud:
     nacos:
       discovery:
@@ -14,9 +14,11 @@ spring:
         file-extension: yml
         username: nacos
         password: nacos
-  redis:
-    host: 127.0.0.1
-    port: 6379
+  datasource:
+    url: jdbc:mysql://192.168.220.129:3306/prd?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 1123251
+    driver-class-name: com.mysql.cj.jdbc.Driver
 rocketmq:
   name-server: 192.168.220.129:9876
   producer:
@@ -24,6 +26,4 @@ rocketmq:
     send-message-timeout: 3000
     retry-times-when-send-async-failed: 3
     retry-times-when-send-failed: 3
-
-
 
