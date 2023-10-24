@@ -1,6 +1,23 @@
-# nacos动态配置dataId的后缀
+server:
+  port: 9120
 spring:
   profiles:
     active: dev
-config:
-  doller
+  datasource:
+    url: jdbc:mysql://192.168.220.129:3306/prd?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 1123251
+    driver-class-name: com.mysql.cj.jdbc.Driver
+rocketmq:
+  name-server: 192.168.220.129:9876
+  producer:
+    group: approval-group
+    send-message-timeout: 3000
+    retry-times-when-send-async-failed: 3
+    retry-times-when-send-failed: 3
+com:
+  alipay:
+    sofa:
+      rpc:
+        registry-address: local://c://users/localRegistry.reg
+        bolt-port: 12202

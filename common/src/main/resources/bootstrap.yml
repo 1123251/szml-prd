@@ -1,5 +1,4 @@
-server:
-  port: 9100
+
 spring:
   application:
     name: szml-prd-common
@@ -14,16 +13,7 @@ spring:
         file-extension: yml
         username: nacos
         password: nacos
-  redis:
-    host: 127.0.0.1
-    port: 6379
-rocketmq:
-  name-server: 192.168.220.129:9876
-  producer:
-    group: approval-group
-    send-message-timeout: 3000
-    retry-times-when-send-async-failed: 3
-    retry-times-when-send-failed: 3
+
 
 
 
