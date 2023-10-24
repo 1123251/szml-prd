@@ -1,6 +1,5 @@
 package com.yt.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.yt.entity.Draft;
 import com.yt.vo.ResponseResult;
 import org.apache.rocketmq.client.exception.MQClientException;

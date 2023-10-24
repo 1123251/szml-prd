@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yt.entity.Draft;
 import com.yt.entity.LoginUser;
@@ -16,7 +15,6 @@ import com.yt.rocketmq.TransactionProducer;
 import com.yt.service.DraftService;
 import com.yt.vo.ResponseResult;
 import org.apache.rocketmq.client.exception.MQClientException;
-import org.omg.PortableInterceptor.SUCCESSFUL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +22,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.apache.rocketmq.spring.core.RocketMQTemplate;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Objects;
 
 import static com.yt.constants.ResponseCode.SUCCESS;
-import static com.yt.rocketmq.rocketmqConstants.TRANSACTION_APPROVAL_TOPIC;
+import static com.yt.constants.rocketmqConstants.TRANSACTION_APPROVAL_TOPIC;
 
 @Service
 public class DraftServiceImpl extends ServiceImpl<DraftMapper,Draft> implements DraftService {

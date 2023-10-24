@@ -10,7 +10,6 @@ import com.yt.mapper.DraftMapper;
 import com.yt.mapper.ProductMapper;
 import com.yt.service.ApprovalService;
 import com.yt.vo.ResponseResult;
-import org.omg.PortableInterceptor.SUCCESSFUL;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

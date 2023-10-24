@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-import static com.yt.rocketmq.rocketmqConstants.TRANSACTION_APPROVAL_TOPIC;
+import static com.yt.constants.rocketmqConstants.TRANSACTION_APPROVAL_TOPIC;
 
 @Component
 public class Consumer {
