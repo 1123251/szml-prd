@@ -1,5 +1,7 @@
 package com.yt.service.impl;
 
+import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.yt.entity.Approval;
 import com.yt.entity.Draft;
@@ -26,9 +28,12 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Autowired
     ApprovalMapper approvalMapper;
-    @Autowired
+
+    @SofaReference(interfaceType = DraftMapper.class, jvmFirst = false,
+            binding = @SofaReferenceBinding(bindingType = "bolt"))
     DraftMapper draftMapper;
-    @Autowired
+    @SofaReference(interfaceType = ProductMapper.class, jvmFirst = false,
+            binding = @SofaReferenceBinding(bindingType = "bolt"))
     ProductMapper productMapper;
 
     @Override

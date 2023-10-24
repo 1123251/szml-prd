@@ -25,7 +25,7 @@ public class DraftAppTest
      */
     public static Test suite()
     {
-        return new TestSuite( AppTest.class );
+        return new TestSuite( DraftAppTest.class );
     }
 
     /**

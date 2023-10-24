@@ -34,6 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         //根据用户查询权限信息 添加到LoginUser中
         List<String> permissionKeyList =  menuMapper.selectPermsByUserId(user.getId());
+
         return new LoginUser(user,permissionKeyList);
     }
 }

@@ -1,6 +1,8 @@
 package com.yt.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alipay.sofa.runtime.api.annotation.SofaService;
+import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -29,6 +31,7 @@ import static com.yt.constants.ResponseCode.SUCCESS;
 import static com.yt.constants.rocketmqConstants.TRANSACTION_APPROVAL_TOPIC;
 
 @Service
+@SofaService(interfaceType = DraftService.class, bindings = { @SofaServiceBinding(bindingType = "bolt") })
 public class DraftServiceImpl extends ServiceImpl<DraftMapper,Draft> implements DraftService {
     @Autowired
     DraftMapper draftMapper;
@@ -103,4 +106,5 @@ public class DraftServiceImpl extends ServiceImpl<DraftMapper,Draft> implements 
 
         return new ResponseResult(SUCCESS,page);
     }
+
 }

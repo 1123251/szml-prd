@@ -1,5 +1,6 @@
 package com.yt.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.yt.entity.LoginUser;
 import com.yt.entity.User;
 import com.yt.service.LoginService;
@@ -39,8 +40,9 @@ public class LoginServiceImpl implements LoginService {
         //authenticate存入redis
         redisCache.setCacheObject("login:"+userId,loginUser);
         //把token响应给前端
-        HashMap<String,String> map = new HashMap<>();
+        HashMap<String,Object> map = new HashMap<>();
         map.put("token",jwt);
+        map.put("permissions",loginUser.getPermissions());
         return new ResponseResult(SUCCESS,"登陆成功",map);
     }
 

@@ -5,6 +5,7 @@ import com.yt.vo.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.yt.service.LoginService;
 @RestController
@@ -24,6 +25,7 @@ public class UserController {
     @GetMapping("/logout")
     @ResponseBody
     @ApiOperation(value = "登出", tags = "登出")
+
     public ResponseResult logout(){
         return loginService.logout();
     }

@@ -316,6 +316,72 @@
             </TableInfoDTO>
           </value>
         </entry>
+        <entry key="prd.sys_role">
+          <value>
+            <TableInfoDTO>
+              <option name="comment" value="角色表" />
+              <option name="fullColumn">
+                <list>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="id" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="name" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="角色权限字符串" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="roleKey" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                </list>
+              </option>
+              <option name="name" value="SysRole" />
+              <option name="preName" value="" />
+              <option name="saveModelName" value="prd-user" />
+              <option name="savePackageName" value="com.yt.entity" />
+              <option name="savePath" value="./prd-user/src/main/java/com/yt/entity" />
+              <option name="templateGroupName" value="Default" />
+            </TableInfoDTO>
+          </value>
+        </entry>
+        <entry key="prd.sys_role_menu">
+          <value>
+            <TableInfoDTO>
+              <option name="fullColumn">
+                <list>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="角色ID" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="roleId" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="菜单id" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="menuId" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                </list>
+              </option>
+              <option name="name" value="SysRoleMenu" />
+              <option name="preName" value="" />
+              <option name="saveModelName" value="prd-user" />
+              <option name="savePackageName" value="com.yt.entity" />
+              <option name="savePath" value="./prd-user/src/main/java/com/yt/entity" />
+              <option name="templateGroupName" value="Default" />
+            </TableInfoDTO>
+          </value>
+        </entry>
         <entry key="prd.sys_user">
           <value>
             <TableInfoDTO>
@@ -388,6 +454,36 @@
                 </list>
               </option>
               <option name="name" value="SysUser" />
+              <option name="preName" value="" />
+              <option name="saveModelName" value="prd-user" />
+              <option name="savePackageName" value="com.yt.entity" />
+              <option name="savePath" value="./prd-user/src/main/java/com/yt/entity" />
+              <option name="templateGroupName" value="Default" />
+            </TableInfoDTO>
+          </value>
+        </entry>
+        <entry key="prd.sys_user_role">
+          <value>
+            <TableInfoDTO>
+              <option name="fullColumn">
+                <list>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="用户id" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="userId" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="角色id" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="roleId" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                </list>
+              </option>
+              <option name="name" value="SysUserRole" />
               <option name="preName" value="" />
               <option name="saveModelName" value="prd-user" />
               <option name="savePackageName" value="com.yt.entity" />
