@@ -29,4 +29,5 @@ public class MapperTest {
         List<User> users = userMapper.selectList(null);
         System.out.println(users);
     }
+
 }

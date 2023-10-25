@@ -13,5 +13,7 @@ public interface DraftService  {
 
         ResponseResult draftList(int currentPage,int pageSize);
 
+        ResponseResult unApprovalDraftList(int currentPage,int pageSize);
+
 
 }

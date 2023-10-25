@@ -106,5 +106,17 @@ public class DraftServiceImpl extends ServiceImpl<DraftMapper,Draft> implements 
 
         return new ResponseResult(SUCCESS,page);
     }
+    @Override
+    public ResponseResult unApprovalDraftList(int currentPage,int pageSize){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        Long userid = loginUser.getUser().getId();
+        QueryWrapper<Draft> wrapper = new QueryWrapper<Draft>();
+        wrapper.eq("status",1)
+                .select();
+        IPage<Draft> page = this.page(new Page<>(currentPage,pageSize), wrapper);
+
+        return new ResponseResult(SUCCESS,page);
+    }
 
 }

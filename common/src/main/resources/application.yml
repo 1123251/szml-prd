@@ -7,7 +7,7 @@ spring:
     host: 127.0.0.1
     port: 6379
 rocketmq:
-  name-server: 192.168.220.129:9876
+  name-server: 127.0.0.1:9876
   producer:
     group: approval-group
     send-message-timeout: 3000

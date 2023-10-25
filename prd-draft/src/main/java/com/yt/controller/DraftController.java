@@ -45,6 +45,13 @@ public class DraftController {
         return  draftService.draftList(currentPage,pageSize);
     }
 
+    @GetMapping("/unApprovalDraftList/{currentPage}/{pageSize}")
+    @ApiOperation(value = "待审核草稿列表", tags = "待审核草稿列表")
+    @PreAuthorize("hasAnyAuthority('product:approval')")
+    public ResponseResult unApprovalDraftList(@PathVariable("currentPage") int currentPage, @PathVariable("pageSize") int pageSize)  {
+
+        return  draftService.unApprovalDraftList(currentPage,pageSize);
+    }
 
 
 

@@ -1,38 +1,35 @@
 package com.yt;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import com.yt.entity.SelectRulers;
+import com.yt.mapper.ProductMapper;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+@SpringBootTest(classes = {ProductApp.class})
+public class AppTest
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+    @Autowired
+    ProductMapper productMapper;
+        @Test
+      public  void test() throws ParseException {
+            SelectRulers selectRulers= new SelectRulers();
+            //selectRulers.setId(1);
+            selectRulers.setName("商品");
+            Date date = new Date();
+            System.out.println(date);
+            //Fri Nov 29 10:05:00 CST 2019
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            selectRulers.setStart_time(sdf.parse("2009-12-31 00:00:00"));
+            selectRulers.setEnd_time(sdf.parse("2025-12-31 00:00:00"));
+            System.out.println(productMapper.selectByRulers(selectRulers));
+        }
 }
