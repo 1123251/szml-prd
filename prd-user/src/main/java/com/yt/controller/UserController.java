@@ -29,4 +29,6 @@ public class UserController {
     public ResponseResult logout(){
         return loginService.logout();
     }
+
+
 }

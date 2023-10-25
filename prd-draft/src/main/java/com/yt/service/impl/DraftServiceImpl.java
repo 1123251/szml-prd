@@ -73,14 +73,14 @@ public class DraftServiceImpl extends ServiceImpl<DraftMapper,Draft> implements 
         }
         if ( select.getStatus()!=1) {
             //throw new IllegalArgumentException("参数非法，该草稿已审核！");
-            return  new ResponseResult(SUCCESS,"参数非法，该草稿已审核 ,请等待管理员处理！");
+            return  new ResponseResult(SUCCESS,"参数非法，该草稿已提交审核 ,请等待管理员处理！");
         }
         if (select.getStatus()==1) {
 
             producer.send(JSON.toJSONString(draft),TRANSACTION_APPROVAL_TOPIC);
 
         }
-        return new ResponseResult(SUCCESS,"草稿已提交审核！");
+        return new ResponseResult(SUCCESS,"提交成功！");
 
     }
 

@@ -1,8 +1,12 @@
 package com.yt.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yt.dao.RoleMapper;
+import com.yt.dao.UserRoleMapper;
 import com.yt.entity.LoginUser;
 import com.yt.entity.User;
+import com.yt.entity.UserRole;
 import com.yt.service.LoginService;
 import com.yt.util.JwtUtil;
 import com.yt.util.RedisCache;
@@ -26,6 +30,10 @@ public class LoginServiceImpl implements LoginService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private RedisCache redisCache;
+    @Autowired
+    UserRoleMapper userRoleMapper;
+    @Autowired
+    RoleMapper roleMapper;
     @Override
     public ResponseResult login(User user) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword());
@@ -42,7 +50,10 @@ public class LoginServiceImpl implements LoginService {
         //把token响应给前端
         HashMap<String,Object> map = new HashMap<>();
         map.put("token",jwt);
-        map.put("permissions",loginUser.getPermissions());
+        QueryWrapper<UserRole> wrapper = new QueryWrapper<UserRole>();
+        wrapper.eq("user_id",userId)
+                .select();
+        map.put("role",roleMapper.selectById( userRoleMapper.selectOne(wrapper).getRoleId()));
         return new ResponseResult(SUCCESS,"登陆成功",map);
     }
 

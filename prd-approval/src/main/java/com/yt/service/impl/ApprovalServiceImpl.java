@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
+import static com.yt.constants.ResponseCode.FAIL;
 import static com.yt.constants.ResponseCode.SUCCESS;
 
 @Service
@@ -65,6 +66,8 @@ public class ApprovalServiceImpl implements ApprovalService {
             //审核未通过
             draft.setStatus(4);
             draftMapper.updateById(draft);
+        } else{
+            return new ResponseResult(FAIL,"审批参数错误！");
         }
         return new ResponseResult(SUCCESS,"审批成功！");
     }
