@@ -1,4 +1,20 @@
 
+#
+#spring:
+#  application:
+#    name: szml-prd-draft
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#        username: root
+#        password: root
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        file-extension: yml
+#        username: root
+#        password: root
+
 spring:
   application:
     name: szml-prd-draft

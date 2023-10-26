@@ -21,3 +21,8 @@ com:
       rpc:
         registry-address: local://c://users/localRegistry.reg
         bolt-port: 12201
+logging:
+  level:
+    com:
+      yt:
+        mapper: debug

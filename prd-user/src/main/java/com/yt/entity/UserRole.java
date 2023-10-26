@@ -1,43 +1,19 @@
 package com.yt.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
- * (SysUserRole)实体类
- *
- * @author makejava
- * @since 2023-10-24 18:05:01
- */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName("sys_user_role")
 public class UserRole implements Serializable {
-    private static final long serialVersionUID = 365000840691193905L;
-    /**
-     * 用户id
-     */
-    private Long userId;
-    /**
-     * 角色id
-     */
-    private Long roleId;
+    public static final Long ROLE_ID_DEFAULT = 2L; //默认用户是运营  1是管理员
 
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
+    private Long userId; //用户id
+    private Long roleId; //角色id
 }
-

@@ -6,6 +6,8 @@ import com.yt.config.RedisPageHelper;
 import com.yt.entity.LoginUser;
 import com.yt.entity.Product;
 import com.yt.entity.SelectRulers;
+import com.yt.entity.TimePeriod;
+import com.yt.mapper.ExchangeRecordsMapper;
 import com.yt.mapper.ProductMapper;
 import com.yt.service.ProductService;
 import com.yt.vo.ResponseResult;
@@ -37,9 +39,16 @@ public class ProductController {
     RedisTemplate redisTemplate;
     @Autowired
     RedisPageHelper redisPageHelper;
+    @Autowired
+    ExchangeRecordsMapper exchangeRecordsMapper;
 
     @Autowired
     ProductService productService;
+    @GetMapping("/productDetails/{id}")
+    @ApiOperation(value = "商品详情", tags = "商品详情")
+    public ResponseResult productDetails(@PathVariable int id){
+        return new ResponseResult(SUCCESS,productMapper.selectById(id));
+    }
     @GetMapping("/proList")
     @ApiOperation(value = "商品分页列表", tags = "商品分页列表")
     public ResponseResult proList(@RequestBody SelectRulers selectRulers){
@@ -86,4 +95,24 @@ public class ProductController {
         //redisTemplate.delete(CACHE_PRODUCT);
         return new ResponseResult<>(SUCCESS,"编辑成功！");
     }
+    @PostMapping("/dateRecordsList")
+    @ApiOperation(value = "日兑换量列表", tags = "日兑换量列表")
+    public ResponseResult  dateRecordsList(@RequestBody TimePeriod timePeriod){
+
+        return new ResponseResult(SUCCESS,exchangeRecordsMapper.dateRecordsList(timePeriod));
+    }
+    @PostMapping("/productRecordsList/{nums}")
+    @ApiOperation(value = "销量排行", tags = "销量排行")
+    public ResponseResult  productRecordsList(@RequestBody TimePeriod timePeriod,@PathVariable int nums){
+
+        return new ResponseResult(SUCCESS,exchangeRecordsMapper.productRecords(timePeriod,nums));
+    }
+
+    @PostMapping("/priceTypeRecords")
+    @ApiOperation(value = "兑换方式统计", tags = "兑换方式统计")
+    public ResponseResult  priceTypeRecords(@RequestBody TimePeriod timePeriod){
+
+        return new ResponseResult(SUCCESS,exchangeRecordsMapper.priceTypeRecords(timePeriod));
+    }
+
 }
