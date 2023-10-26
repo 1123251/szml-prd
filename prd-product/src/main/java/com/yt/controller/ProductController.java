@@ -22,6 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static com.yt.constants.RedisConstants.CACHE_PRODUCT;
@@ -41,18 +42,22 @@ public class ProductController {
     RedisPageHelper redisPageHelper;
     @Autowired
     ExchangeRecordsMapper exchangeRecordsMapper;
+    @Autowired
+    HttpServletRequest httpServletRequest;
 
     @Autowired
     ProductService productService;
     @GetMapping("/productDetails/{id}")
     @ApiOperation(value = "商品详情", tags = "商品详情")
     public ResponseResult productDetails(@PathVariable int id){
+
         return new ResponseResult(SUCCESS,productMapper.selectById(id));
     }
-    @GetMapping("/proList")
+    @PostMapping("/proList")
     @ApiOperation(value = "商品分页列表", tags = "商品分页列表")
     public ResponseResult proList(@RequestBody SelectRulers selectRulers){
         //查询缓存中是否有数据
+        System.out.println(httpServletRequest.getHeader("Authorization"));
         System.out.println(selectRulers);
         int offset = (selectRulers.getCurrentPage()-1)* selectRulers.getPageSize();
         selectRulers.setCurrentPage(offset);

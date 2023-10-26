@@ -36,7 +36,7 @@ public class userServiceImpl implements UserService {
         user.setPassword(password);
 
         //设置账号状态（默认启动 0正常 1停用）
-        user.setStatus("0"); //默认启动
+        user.setStatus(0); //默认启动
         user.setUserType(1L); //0管理员，1运营
         //向用户表插入数据
         userMapper.insertUser(user); //用户id

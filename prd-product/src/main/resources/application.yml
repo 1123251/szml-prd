@@ -26,3 +26,5 @@ logging:
     com:
       yt:
         mapper: debug
+mybatis-plus:
+  mapper-locations: mapper/*.xml

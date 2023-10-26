@@ -15,9 +15,9 @@
                 AND name LIKE CONCAT('%', #{name}, '%')
             </if>
             <if test="startTime != null ">
-                AND startTime BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+                AND start_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
             </if>
-            <if test="end_time != null ">
+            <if test="endTime != null ">
                 AND end_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
             </if>
             <if test="status != null and status != 0">
@@ -26,8 +26,8 @@
             <if test="caretaker != null and caretaker > 0">
                 AND caretaker = #{caretaker}
             </if>
-            <if test="proxy_id != null and proxy_id > 0">
-                AND proxyId = #{proxyId}
+            <if test="proxyId != null and proxyId > 0">
+                AND proxy_id = #{proxyId}
             </if>
         </where>
        limit #{currentPage},#{pageSize}

@@ -27,6 +27,7 @@ public class UserController {
     @ResponseBody
     @ApiOperation(value = "登录", tags = "登录")
     public ResponseResult login(@RequestBody User user){
+
         return loginService.login(user);
     }
 
