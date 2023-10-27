@@ -1,6 +1,7 @@
 package com.yt.controller;
 
 import com.yt.entity.Draft;
+import com.yt.mapper.DraftMapper;
 import com.yt.service.DraftService;
 import com.yt.vo.ResponseResult;
 import io.swagger.annotations.Api;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import static com.yt.constants.ResponseCode.SUCCESS;
+
 @RestController
 @RequestMapping("/draft")
 @Api(value = "商品接口", tags = "商品接口")
@@ -20,6 +23,8 @@ public class DraftController {
     @Autowired
     DraftService draftService;
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    DraftMapper draftMapper;
 
     @PostMapping("/commitDraft")
     @ApiOperation(value = "草稿提交审批", tags = "草稿提交审批")
@@ -53,7 +58,12 @@ public class DraftController {
         return  draftService.unApprovalDraftList(currentPage,pageSize);
     }
 
+    @GetMapping("/getDraft/{draftId}")
+    @ApiOperation(value = "草稿提交审批", tags = "草稿提交审批")
+    public ResponseResult getDraft(@PathVariable Integer draftId) throws MQClientException {
 
+        return  new ResponseResult(SUCCESS,draftMapper.selectById(draftId));
+    }
 
 
 }

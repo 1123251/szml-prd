@@ -71,4 +71,26 @@ public class ApprovalServiceImpl implements ApprovalService {
         }
         return new ResponseResult(SUCCESS,"审批成功！");
     }
+    public ResponseResult approvalByDraftId(Integer draftId,Integer options){
+        Draft draft = draftMapper.selectById(draftId);
+        if (draft.getStatus()==1){
+            return new ResponseResult(FAIL,"创建者未发起审批申请！");
+        }
+        if (draft.getStatus()==3){
+            return new ResponseResult(FAIL,"商品已上线！");
+        }
+
+        draft.setStatus(options);
+        draftMapper.updateById(draft);
+        if(options==3){
+            //商品上线
+            Product product = new Product();
+            System.out.println(draft);
+            BeanUtils.copyProperties(draft,product);
+            product.setStatus(1);
+            product.setId(null);
+            productMapper.insert(product);
+        }
+        return new ResponseResult(SUCCESS,"操作成功");
+    }
 }
