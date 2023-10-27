@@ -71,6 +71,7 @@ public class ApprovalServiceImpl implements ApprovalService {
         }
         return new ResponseResult(SUCCESS,"审批成功！");
     }
+    @Transactional
     public ResponseResult approvalByDraftId(Integer draftId,Integer options){
         Draft draft = draftMapper.selectById(draftId);
         if (draft.getStatus()==1){
@@ -79,7 +80,17 @@ public class ApprovalServiceImpl implements ApprovalService {
         if (draft.getStatus()==3){
             return new ResponseResult(FAIL,"商品已上线！");
         }
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        Long userid = loginUser.getUser().getId();
+        //修改审批表中处理时间和处理人
+        Approval approval = new Approval();
+        UpdateWrapper<Approval> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("draft_id",draftId);
+        approval.setManagerId(Math.toIntExact(userid));
+        approval.setProcessTime(new Date());
+        approvalMapper.update(approval,updateWrapper);
+        //修改草稿状态
         draft.setStatus(options);
         draftMapper.updateById(draft);
         if(options==3){

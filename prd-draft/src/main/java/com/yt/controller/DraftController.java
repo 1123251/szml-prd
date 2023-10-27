@@ -41,6 +41,13 @@ public class DraftController {
 
         return  draftService.createDraft(draft);
     }
+    @PutMapping("/editDraft")
+    @ApiOperation(value = "草稿编辑", tags = "草稿编辑")
+    @PreAuthorize("hasAnyAuthority('product:add')")
+    public ResponseResult editDraft(@RequestBody Draft draft)  {
+
+        return  new ResponseResult(SUCCESS,draftMapper.updateById(draft));
+    }
 
     @GetMapping("/draftList/{currentPage}/{pageSize}")
     @ApiOperation(value = "个人草稿列表", tags = "个人草稿列表")
@@ -59,7 +66,7 @@ public class DraftController {
     }
 
     @GetMapping("/getDraft/{draftId}")
-    @ApiOperation(value = "草稿提交审批", tags = "草稿提交审批")
+    @ApiOperation(value = "草稿详情", tags = "草稿详情")
     public ResponseResult getDraft(@PathVariable Integer draftId) throws MQClientException {
 
         return  new ResponseResult(SUCCESS,draftMapper.selectById(draftId));
