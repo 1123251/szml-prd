@@ -59,6 +59,7 @@ public class ProductController {
         //查询缓存中是否有数据
         //System.out.println(httpServletRequest.getHeader("Authorization"));
         System.out.println(selectRulers);
+        int t=selectRulers.getCurrentPage();
         int offset = (selectRulers.getCurrentPage()-1)* selectRulers.getPageSize();
         selectRulers.setCurrentPage(offset);
 //        int start=currentPage*pageSize-pageSize;
@@ -74,7 +75,7 @@ public class ProductController {
         //新建分页构造函数Page<T> T为目标实体类
         Page<Product> result = new Page<Product>();
         result.setRecords(productMapper.selectByRulers(selectRulers));
-        result.setCurrent(selectRulers.getCurrentPage());
+        result.setCurrent(t);
         result.setTotal(productMapper.selectTotalByRulers(selectRulers));
 
         //将数据添加进缓存
