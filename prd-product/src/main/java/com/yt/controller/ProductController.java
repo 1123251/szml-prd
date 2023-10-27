@@ -20,6 +20,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +59,11 @@ public class ProductController {
     public ResponseResult proList(@RequestBody SelectRulers selectRulers){
         //查询缓存中是否有数据
         //System.out.println(httpServletRequest.getHeader("Authorization"));
+
         System.out.println(selectRulers);
+        if (selectRulers.getCurrentPage() == null||selectRulers.getPageSize()==null) {
+            return new ResponseResult<>(FAIL,"参数错误！");
+        }
         int t=selectRulers.getCurrentPage();
         int offset = (selectRulers.getCurrentPage()-1)* selectRulers.getPageSize();
         selectRulers.setCurrentPage(offset);
@@ -83,22 +88,19 @@ public class ProductController {
         //redisTemplate.opsForList().rightPushAll(CACHE_PRODUCT,productList);
         return new ResponseResult<>(SUCCESS,result);
     }
-    @GetMapping("/editStatus/{id}/{status}")
+    @PostMapping ("/editStatus/{status}")
     @ApiOperation(value = "商品上下线", tags = "商品上下线")
-    @PreAuthorize("hasAnyAuthority('product:approval','product:add')")
-    public ResponseResult editProduct(@PathVariable int id,@PathVariable int status){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
-        Long userid = loginUser.getUser().getId();
-        Product product = productMapper.selectById(id);
-        if (userid!=product.getId().intValue()&&userid!=product.getProxyId().intValue()){
-            return new ResponseResult<>(FAIL,"您没有该商品的修改权限！");
-        }
-        UpdateWrapper<Product> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("id",id);
+    @PreAuthorize("hasAnyAuthority('product:approval')")
+    @Transactional
+    public ResponseResult editProduct(@PathVariable int status,@RequestBody Long[] ids){
+
         Product product1 = new Product();
         product1.setStatus(status);
-        productMapper.update(product1, updateWrapper);
+        for (Long id : ids) {
+            UpdateWrapper<Product> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("id", id);
+            productMapper.update(product1, updateWrapper);
+        }
       //删除缓存
         //redisTemplate.delete(CACHE_PRODUCT);
         return new ResponseResult<>(SUCCESS,"编辑成功！");

@@ -15,10 +15,10 @@
                 AND name LIKE CONCAT('%', #{name}, '%')
             </if>
             <if test="startTime != null ">
-                AND start_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+                AND start_time BETWEEN CAST(#{startTime} AS DATE) AND CAST(#{endTime} AS DATE)
             </if>
             <if test="endTime != null ">
-                AND end_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+                AND end_time BETWEEN CAST(#{startTime} AS DATE) AND CAST(#{endTime} AS DATE)
             </if>
             <if test="status != null and status != 0">
                 AND status = #{status}
@@ -44,10 +44,10 @@
                 AND name LIKE CONCAT('%', #{name}, '%')
             </if>
             <if test="startTime != null ">
-                AND start_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+                AND start_time BETWEEN CAST(#{startTime} AS DATE) AND CAST(#{endTime} AS DATE)
             </if>
             <if test="endTime != null ">
-                AND end_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+                AND end_time BETWEEN CAST(#{startTime} AS DATE) AND CAST(#{endTime} AS DATE)
             </if>
             <if test="status != null and status != 0">
                 AND status = #{status}
@@ -61,4 +61,5 @@
         </where>
 
     </select>
+
 </mapper>
