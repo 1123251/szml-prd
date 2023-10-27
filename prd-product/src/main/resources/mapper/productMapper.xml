@@ -32,4 +32,33 @@
         </where>
        limit #{currentPage},#{pageSize}
     </select>
+    <select id="selectTotalByRulers" resultType="Integer">
+
+        SELECT count(*)
+        FROM product
+        <where>
+            <if test="id != null and id > 0">
+                AND id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="startTime != null ">
+                AND start_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+            </if>
+            <if test="endTime != null ">
+                AND end_time BETWEEN CAST(#{startTime} AS DATETIME) AND CAST(#{endTime} AS DATETIME)
+            </if>
+            <if test="status != null and status != 0">
+                AND status = #{status}
+            </if>
+            <if test="caretaker != null and caretaker > 0">
+                AND caretaker = #{caretaker}
+            </if>
+            <if test="proxyId != null and proxyId > 0">
+                AND proxy_id = #{proxyId}
+            </if>
+        </where>
+
+    </select>
 </mapper>

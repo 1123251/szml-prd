@@ -15,4 +15,5 @@ import java.util.List;
 public interface ProductMapper extends BaseMapper<Product> {
 
     List<Product> selectByRulers(SelectRulers selectRulers);
+    Integer selectTotalByRulers(SelectRulers selectRulers);
 }
